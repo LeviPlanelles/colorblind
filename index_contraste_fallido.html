@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ejemplo - Contraste fallido</title>
+  <style>
+    /* Estilos intencionalmente malos para demostrar problemas de contraste */
+    :root{
+      --bg:#ffffff; /* blanco */
+      --muted:#f2f2f2; /* casi blanco */
+      --light-gray:#e9e9e9;
+      --pale-yellow:#ffffcc;
+      --bright-yellow:#fff700; /* muy claro sobre blanco */
+      --lightblue:#cfefff;
+      --lightgreen:#dfffe0;
+      --lavender:#f6e8ff;
+      --almost-white:#fbfbfb;
+    }
+    html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#222}
+    header{padding:20px;background:linear-gradient(90deg,var(--almost-white),var(--muted));border-bottom:1px solid var(--light-gray)}
+    nav a{margin-right:16px;text-decoration:none;color:#d0d0d0;/* gris claro sobre fondo blanco: bajo contraste */font-size:14px}
+    .brand{font-weight:700;color:#dedede} /* marca casi invisible */
+
+    .hero{padding:40px 20px;background:linear-gradient(180deg,var(--pale-yellow),var(--bright-yellow));color:#fff}
+    .hero h1{margin:0;font-size:36px;color:#fff7f7} /* blanco sobre amarillo claro */
+    .hero p{color:#fffde7;margin-top:12px}
+
+    .container{max-width:1000px;margin:24px auto;padding:0 16px}
+
+    .card{background:var(--lightblue);border:1px solid #e6f7ff;padding:18px;margin-bottom:16px}
+    .card h2{margin:0 0 8px 0;color:#bfeaff} /* texto claro sobre fondo claro */
+
+    .button{display:inline-block;padding:10px 16px;border-radius:6px;background:#fff9b3;color:#fff; /* botón amarillo pálido con texto blanco */text-decoration:none;font-weight:600}
+
+    .danger{background:linear-gradient(90deg,#fff0f0,#ffdcdc);color:#fff;border:1px solid #ffecec}
+
+    .small-text{font-size:11px;color:#eaeaea} /* muy pequeño y de bajo contraste */
+
+    form{background:var(--lavender);padding:12px;border-radius:6px}
+    label{display:block;margin-bottom:6px;color:#efe7fb} /* label claro sobre fondo claro */
+    input[type="text"],textarea,select{width:100%;padding:8px;border:1px solid #f4f4f4;background:#fafafa;color:#f1f1f1} /* texto dentro del input casi blanco */
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+
+    footer{padding:18px;text-align:center;background:var(--muted);color:#e8e8e8}
+
+    /* enlaces que no se distinguen bien */
+    a.link{color:#bfe0ff;text-decoration:none}
+
+    /* estado enfocado pero casi invisible */
+    a:focus,button:focus,input:focus{outline:2px solid #ffffff}
+
+    /* tamaños de texto pequeños en zonas críticas */
+    .meta{font-size:12px;color:#f0f0f0}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <span class="brand">MiSitio</span>
+      <nav style="float:right">
+        <a href="#" aria-label="inicio">Inicio</a>
+        <a href="#" aria-label="servicios">Servicios</a>
+        <a href="#" aria-label="contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Bienvenido a la demo</h1>
+      <p>Esta página está diseñada intencionalmente con combinaciones de color que NO cumplen el contraste mínimo WCAG.</p>
+      <p><a class="button" href="#">Llamada a la acción</a></p>
+    </div>
+  </section>
+
+  <main class="container" role="main">
+    <section aria-labelledby="sec1">
+      <div class="card">
+        <h2 id="sec1">Sección 1: Información</h2>
+        <p>Texto descriptivo en color muy claro que dificulta la lectura. El objetivo es mostrar <strong>fallos reales</strong> de contraste en títulos, botones y formularios.</p>
+        <p class="small-text">Nota: esto simula un error de diseño común en muchos sitios que priorizan estética sobre accesibilidad.</p>
+      </div>
+
+      <div class="card">
+        <h2>Sección 2: Acciones</h2>
+        <p>A continuación hay botones y enlaces con contraste pobre:</p>
+        <p>
+          <a class="button" href="#">Botón principal</a>
+          <a class="button danger" href="#">Botón secundario</a>
+        </p>
+        <p>Enlaces en texto: <a class="link" href="#">Leer más</a> • <a class="link" href="#">Política</a></p>
+      </div>
+
+      <div class="card">
+        <h2>Sección 3: Formulario</h2>
+        <form>
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" placeholder="escribe tu nombre">
+
+          <label for="email">Email</label>
+          <input id="email" type="text" placeholder="ejemplo@correo.com">
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" rows="4" placeholder="escribe aquí..."></textarea>
+
+          <p style="margin-top:8px"><button class="button" type="submit">Enviar</button></p>
+        </form>
+      </div>
+    </section>
+
+    <section aria-labelledby="cards" style="margin-top:18px">
+      <h2 id="cards">Tarjetas de contenido</h2>
+      <div class="grid">
+        <article class="card">
+          <h3 style="color:#e8f8ff">Artículo A</h3>
+          <p style="color:#f3fdff">Descripción breve con poco contraste.</p>
+          <p class="meta">Publicado: 01/01/2025</p>
+        </article>
+        <article class="card">
+          <h3 style="color:#e8f8ff">Artículo B</h3>
+          <p style="color:#f3fdff">Descripción breve con poco contraste.</p>
+          <p class="meta">Publicado: 02/02/2025</p>
+        </article>
+        <article class="card">
+          <h3 style="color:#e8f8ff">Artículo C</h3>
+          <p style="color:#f3fdff">Descripción breve con poco contraste.</p>
+          <p class="meta">Publicado: 03/03/2025</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 MiSitio - Todos los derechos reservados</p>
+      <p style="font-size:11px;color:#f5f5f5">Enlaces: <a class="link" href="#">Aviso legal</a> • <a class="link" href="#">Privacidad</a></p>
+    </div>
+  </footer>
+</body>
+</html>
