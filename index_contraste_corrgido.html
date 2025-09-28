@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ejemplo - Contraste accesible</title>
+  <style>
+    /* Estilos corregidos para cumplir contraste mínimo WCAG AA */
+    :root{
+      --bg:#ffffff;
+      --primary:#003366; /* azul oscuro */
+      --secondary:#006699;
+      --accent:#cc0000; /* rojo fuerte */
+      --text:#111111;
+      --muted:#f2f2f2;
+    }
+    html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    header{padding:20px;background:var(--primary);border-bottom:4px solid var(--secondary)}
+    nav a{margin-right:16px;text-decoration:none;color:#ffffff;font-size:16px}
+    nav a:focus,nav a:hover{text-decoration:underline}
+    .brand{font-weight:700;color:#ffffff;font-size:20px}
+
+    .hero{padding:40px 20px;background:var(--secondary);color:#ffffff}
+    .hero h1{margin:0;font-size:36px}
+    .hero p{margin-top:12px;font-size:18px}
+
+    .container{max-width:1000px;margin:24px auto;padding:0 16px}
+
+    .card{background:#ffffff;border:2px solid var(--secondary);padding:18px;margin-bottom:16px;border-radius:6px;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+    .card h2{margin:0 0 8px 0;color:var(--primary)}
+
+    .button{display:inline-block;padding:12px 18px;border-radius:6px;background:var(--accent);color:#ffffff;text-decoration:none;font-weight:600;font-size:16px}
+    .button:hover,.button:focus{background:#990000}
+
+    .danger{background:var(--primary);color:#ffffff}
+
+    .small-text{font-size:14px;color:#333}
+
+    form{background:var(--muted);padding:12px;border-radius:6px}
+    label{display:block;margin-bottom:6px;color:var(--text);font-size:15px;font-weight:600}
+    input[type="text"],textarea,select{width:100%;padding:10px;border:1px solid #888;border-radius:4px;background:#ffffff;color:var(--text);font-size:15px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+
+    footer{padding:18px;text-align:center;background:var(--primary);color:#ffffff}
+    footer a{color:#ffffff;text-decoration:underline}
+
+    a.link{color:var(--secondary);font-weight:600}
+    a.link:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <span class="brand">MiSitio</span>
+      <nav style="float:right">
+        <a href="#" aria-label="inicio">Inicio</a>
+        <a href="#" aria-label="servicios">Servicios</a>
+        <a href="#" aria-label="contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Bienvenido a la demo accesible</h1>
+      <p>Esta página está diseñada con combinaciones de color que cumplen el contraste mínimo WCAG AA.</p>
+      <p><a class="button" href="#">Llamada a la acción</a></p>
+    </div>
+  </section>
+
+  <main class="container" role="main">
+    <section aria-labelledby="sec1">
+      <div class="card">
+        <h2 id="sec1">Sección 1: Información</h2>
+        <p>Texto descriptivo con contraste adecuado para mejorar la legibilidad. El objetivo es mostrar <strong>una versión corregida</strong> del ejemplo anterior.</p>
+        <p class="small-text">Nota: el contraste cumple WCAG AA en títulos, botones y formularios.</p>
+      </div>
+
+      <div class="card">
+        <h2>Sección 2: Acciones</h2>
+        <p>A continuación hay botones y enlaces con contraste correcto:</p>
+        <p>
+          <a class="button" href="#">Botón principal</a>
+          <a class="button danger" href="#">Botón secundario</a>
+        </p>
+        <p>Enlaces en texto: <a class="link" href="#">Leer más</a> • <a class="link" href="#">Política</a></p>
+      </div>
+
+      <div class="card">
+        <h2>Sección 3: Formulario</h2>
+        <form>
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" placeholder="Escribe tu nombre">
+
+          <label for="email">Email</label>
+          <input id="email" type="text" placeholder="ejemplo@correo.com">
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" rows="4" placeholder="Escribe aquí..."></textarea>
+
+          <p style="margin-top:12px"><button class="button" type="submit">Enviar</button></p>
+        </form>
+      </div>
+    </section>
+
+    <section aria-labelledby="cards" style="margin-top:18px">
+      <h2 id="cards">Tarjetas de contenido</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Artículo A</h3>
+          <p>Descripción breve con contraste adecuado.</p>
+          <p class="small-text">Publicado: 01/01/2025</p>
+        </article>
+        <article class="card">
+          <h3>Artículo B</h3>
+          <p>Descripción breve con contraste adecuado.</p>
+          <p class="small-text">Publicado: 02/02/2025</p>
+        </article>
+        <article class="card">
+          <h3>Artículo C</h3>
+          <p>Descripción breve con contraste adecuado.</p>
+          <p class="small-text">Publicado: 03/03/2025</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 MiSitio - Todos los derechos reservados</p>
+      <p style="font-size:14px">Enlaces: <a href="#">Aviso legal</a> • <a href="#">Privacidad</a></p>
+    </div>
+  </footer>
+</body>
+</html>
